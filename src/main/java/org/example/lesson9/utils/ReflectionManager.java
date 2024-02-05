@@ -5,7 +5,10 @@ import org.example.lesson9.utils.wrappers.ThrowingFunctionWrapper;
 import javax.persistence.Id;
 import java.util.Arrays;
 
-public abstract class ReflectionManager {
+public final class ReflectionManager {
+
+    private ReflectionManager() {
+    }
 
     public static <T> Object getId(T object) {
         return Arrays.stream(object.getClass().getDeclaredFields())
