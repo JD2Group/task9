@@ -15,6 +15,6 @@ public class HouseDAOImpl extends DAOImpl<HouseDTO> implements HouseDAO {
         query.setParameter("color", color);
         List<HouseDTO> houseDTOList = query.getResultList();
         commit();
-        return houseDTOList.isEmpty() ? null : houseDTOList;
+        return houseDTOList;
     }
 }

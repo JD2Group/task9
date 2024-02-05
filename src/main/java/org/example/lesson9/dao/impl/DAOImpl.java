@@ -3,6 +3,7 @@ package org.example.lesson9.dao.impl;
 import org.example.lesson9.dao.DAO;
 import org.example.lesson9.utils.HibernateUtil;
 import org.example.lesson9.utils.ReflectionManager;
+import org.example.lesson9.utils.jacoco.Generated;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
@@ -63,6 +64,7 @@ public class DAOImpl<T extends Serializable> implements DAO<T> {
         manager.getTransaction().begin();
     }
 
+    @Generated
     protected void commit() {
         if (manager != null && manager.getTransaction().isActive()) {
             manager.getTransaction().commit();
