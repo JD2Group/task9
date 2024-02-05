@@ -4,9 +4,6 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet author="Olga-Tysevich@gmail.com" id="create-tables-1.0" >
-        <tagDatabase tag="lesson9"/>
-    </changeSet>
     <include file="..\changelog-tables\doors-v1.0.xml" relativeToChangelogFile="true"/>
     <include file="..\changelog-tables\houses-v1.0.xml" relativeToChangelogFile="true"/>
 

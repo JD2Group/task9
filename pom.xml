@@ -30,7 +30,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>createDB</id>
+                        <id>createTable</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>update</goal>
