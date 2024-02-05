@@ -5,6 +5,10 @@ import org.example.lesson9.dto.DoorDTO;
 import org.example.lesson9.dto.HouseDTO;
 import org.example.lesson9.utils.HibernateUtil;
 import org.example.lesson9.utils.ReflectionManager;
+import org.example.lesson9.utils_src.MockUtils;
+import org.junit.jupiter.api.ClassOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestClassOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,9 +16,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.io.Serializable;
 import java.util.stream.Stream;
 
-import static org.example.lesson9.dao.impl.MockConstants.*;
+import static org.example.lesson9.utils_src.MockConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestClassOrder(ClassOrderer.OrderAnnotation.class)
+@Order(0)
 class DAOImplTest<T extends Serializable> {
     private final DAO<T> DAO = new DAOImpl<>();
 
@@ -52,6 +58,8 @@ class DAOImplTest<T extends Serializable> {
             assertNull(result, "Expected: null" + ", actual: " + result);
         }
     }
+
+
 
     static Stream<Arguments> cases() {
         return Stream.of(

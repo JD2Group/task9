@@ -4,7 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class HibernateUtil {
+
+public abstract class HibernateUtil {
     private static final EntityManagerFactory FACTORY =
             Persistence.createEntityManagerFactory("lesson9");
 
@@ -14,5 +15,9 @@ public class HibernateUtil {
 
     public static void close() {
         FACTORY.close();
+    }
+
+    public static boolean checkState() {
+        return FACTORY.isOpen();
     }
 }
