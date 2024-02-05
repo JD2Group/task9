@@ -1,0 +1,27 @@
+[
+  {
+    "size": "150",
+    "color": "белый",
+    "roomCount": "5"
+  },
+  {
+    "size": "62",
+    "color": "черный",
+    "roomCount": 3
+  },
+  {
+    "size": "85",
+    "color": "зеленый",
+    "roomCount": 4
+  },
+  {
+    "size": "120",
+    "color": "черно-белый",
+    "roomCount": 7
+  },
+  {
+    "size": "54",
+    "color": "красный",
+    "roomCount": 3
+  }
+]
