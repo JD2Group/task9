@@ -2,6 +2,7 @@ package org.example.lesson9.utils;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import org.example.lesson9.utils.jacoco.Generated;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,16 +17,12 @@ import java.util.List;
 public final class GsonManager {
     private static Gson gson;
 
-
-    static  {
+    static {
         gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(Time.class, new TimeDeserializer())
                 .setDateFormat("yyyy-DD-MM")
                 .create();
-    }
-
-    private GsonManager() {
     }
 
     public static void writeDTOList(String filePath, Object dtoList) throws FileNotFoundException {
