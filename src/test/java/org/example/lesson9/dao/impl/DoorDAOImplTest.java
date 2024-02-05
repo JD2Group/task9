@@ -54,6 +54,9 @@ class DoorDAOImplTest {
         int expected = 3;
         assertNotNull(doorDTOList);
         assertTrue(doorDTOList.size() >= expected, "Expected: " + expected + ", actual: " + doorDTOList.size());
+
+        List<DoorDTO> emptyList = DOOR_DAO.getBySize(NULL_SIZE, NULL_SIZE);
+        assertTrue(emptyList.isEmpty());
     }
 
     static Stream<Arguments> cases() {

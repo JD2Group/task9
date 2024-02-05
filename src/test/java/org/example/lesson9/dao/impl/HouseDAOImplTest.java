@@ -51,7 +51,7 @@ class HouseDAOImplTest {
     }
 
     @Test
-    public void getBySizeTest() {
+    public void getByColorTest() {
         houseDTOS.forEach(h -> HOUSE_DAO.save(h, HouseDTO.class));
 
         List<HouseDTO> whiteHouses = HOUSE_DAO.getByColor(HOUSES_COLOR.get(0));
@@ -64,6 +64,7 @@ class HouseDAOImplTest {
         int blackAndWhiteHousesExpectedSize = 2;
         List<HouseDTO> redHouses = HOUSE_DAO.getByColor(HOUSES_COLOR.get(4));
         int redHousesExpectedSize = 1;
+        List<HouseDTO> emptyList = HOUSE_DAO.getByColor(NULL_COLOR);
 
         assertTrue(whiteHouses.size() >= whiteHousesExpectedSize, "White houses expected list size: " + whiteHousesExpectedSize);
         assertTrue(blackHouses.size() >= blackHousesExpectedSize, "Black houses expected list size: " + blackHousesExpectedSize);
@@ -71,7 +72,7 @@ class HouseDAOImplTest {
         assertTrue(blackAndWhiteHouses.size() >= blackAndWhiteHousesExpectedSize, "Black and white houses expected list size: "
                 + blackAndWhiteHousesExpectedSize);
         assertTrue(redHouses.size() >= redHousesExpectedSize, "Red houses expected list size: " + redHousesExpectedSize);
-
+        assertTrue(emptyList.isEmpty());
     }
 
     static Stream<Arguments> cases() {

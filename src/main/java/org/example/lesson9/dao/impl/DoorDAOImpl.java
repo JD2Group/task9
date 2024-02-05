@@ -17,6 +17,6 @@ public class DoorDAOImpl extends DAOImpl<DoorDTO> implements DoorDAO {
         query.setParameter("toSize", toSize);
         List<DoorDTO> doorDTOList = query.getResultList();
         commit();
-        return doorDTOList.isEmpty() ? null : doorDTOList;
+        return doorDTOList;
     }
 }

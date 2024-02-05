@@ -5,7 +5,6 @@ import org.example.lesson9.dto.DoorDTO;
 import org.example.lesson9.dto.HouseDTO;
 import org.example.lesson9.utils.HibernateUtil;
 import org.example.lesson9.utils.ReflectionManager;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,14 +20,19 @@ class DAOImplTest<T extends Serializable> {
 
     @ParameterizedTest()
     @MethodSource("cases")
-    public void saveTest(T expected, Class<T> clazz) {
-        if (expected != null) {
+    public void saveTest(T object, Class<T> clazz) {
+        if (object != null) {
             int expectedId = 0;
-            DAO.save(expected, clazz);
-            int actualId = (int) ReflectionManager.getId(expected);
+            DAO.save(object, clazz);
+            int actualId = (int) ReflectionManager.getId(object);
             assertNotEquals(expectedId, actualId);
+
+            int expectedIdAfterMerge = (int) ReflectionManager.getId(object);
+            DAO.save(object, clazz);
+            int actualIdAfterMerge = (int) ReflectionManager.getId(object);
+            assertEquals(expectedIdAfterMerge, actualIdAfterMerge);
         } else {
-            assertThrows(IllegalArgumentException.class, () -> DAO.save(expected, clazz));
+            assertThrows(IllegalArgumentException.class, () -> DAO.save(object, clazz));
         }
     }
 
@@ -36,11 +40,15 @@ class DAOImplTest<T extends Serializable> {
     @MethodSource("cases")
     public void deleteTest(T dto, Class<T> clazz) {
         if (dto != null) {
+            int idBeforeSave = (int) ReflectionManager.getId(dto);
+            DAO.delete(idBeforeSave, clazz);
+            boolean isManagerClosed = HibernateUtil.getEntityManager().isOpen();
+            assertTrue(isManagerClosed);
+
             DAO.save(dto, clazz);
             int id = (int) ReflectionManager.getId(dto);
-            DAO.delete(id,clazz);
+            DAO.delete(id, clazz);
             T result = DAO.get(id, clazz);
-
             assertNull(result, "Expected: null" + ", actual: " + result);
         }
     }

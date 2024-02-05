@@ -98,9 +98,10 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>org/example/lesson9/dto/*DTO.*</exclude>
+                        <exclude>org/example/lesson9/dto/*DTO*.*</exclude>
                         <exclude>org/example/lesson9/DemoAppRunner.class</exclude>
                         <exclude>org/example/lesson9/utils/Constants.class</exclude>
+                        <exclude>org/example/lesson9/Test.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

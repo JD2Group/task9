@@ -3,7 +3,7 @@ package org.example.lesson9.utils.wrappers;
 
 import java.util.function.Function;
 
-public class ThrowingFunctionWrapper {
+public abstract class ThrowingFunctionWrapper {
     public static <T, R, E extends Exception> Function<T, R> apply(ThrowingFunction<T, R, E> function, Class<E> exceptionClass) {
         return object -> {
             R result = null;
