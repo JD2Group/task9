@@ -13,7 +13,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public  abstract class GsonManager {
+public final class GsonManager {
     private static Gson gson;
 
 
@@ -23,6 +23,9 @@ public  abstract class GsonManager {
                 .registerTypeAdapter(Time.class, new TimeDeserializer())
                 .setDateFormat("yyyy-DD-MM")
                 .create();
+    }
+
+    private GsonManager() {
     }
 
     public static void writeDTOList(String filePath, Object dtoList) throws FileNotFoundException {

@@ -5,9 +5,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-public abstract class HibernateUtil {
+public final class HibernateUtil {
     private static final EntityManagerFactory FACTORY =
             Persistence.createEntityManagerFactory("lesson9");
+
+    private HibernateUtil() {
+    }
 
     public static EntityManager getEntityManager() {
         return FACTORY.createEntityManager();

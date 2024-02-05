@@ -19,17 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ThrowingFunctionWrapperTest {
 
     @Test
-    public void pointlessTest() {
-    ThrowingFunctionWrapper throwingFunctionWrapper = new ThrowingFunctionWrapper() {
-        @Override
-        public String toString() {
-            return super.toString();
-        }
-    };
-    }
-
-
-    @Test
     public void applyTest() throws NoSuchFieldException {
         DoorDTO doorDTO = MockUtils.buildDoor(DOORS_SIZE.get(0), DOORS_TYPE.get(0));
         Field field = DoorDTO.class.getDeclaredField("id");
