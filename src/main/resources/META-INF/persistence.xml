@@ -6,7 +6,6 @@
         <class>org.example.lesson9.dto.DoorDTO</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-<!--            <property name="hibernate.hbm2ddl.import_files" value="import.sql"/>-->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lesson9?createDatabaseIfNotExist=true"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
