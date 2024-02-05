@@ -25,6 +25,9 @@ public final class GsonManager {
                 .create();
     }
 
+    private GsonManager() {
+    }
+
     public static void writeDTOList(String filePath, Object dtoList) throws FileNotFoundException {
         String doorsDTOList = gson.toJson(dtoList);
         try (PrintWriter writer = new PrintWriter(filePath)) {
@@ -45,6 +48,7 @@ public final class GsonManager {
         return Files.readString(Paths.get(filePath));
     }
 
+    @Generated
     private static class TimeDeserializer implements JsonDeserializer<Time> {
 
         @Override
