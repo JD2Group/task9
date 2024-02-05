@@ -2,10 +2,8 @@ package org.example.lesson9.dao.impl;
 
 import org.example.lesson9.dao.HouseDAO;
 import org.example.lesson9.dto.HouseDTO;
-import org.example.lesson9.utils.HibernateUtil;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.example.lesson9.utils_src.MockUtils;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.example.lesson9.dao.impl.MockConstants.*;
+import static org.example.lesson9.utils_src.MockConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestClassOrder(ClassOrderer.OrderAnnotation.class)
+@Order(2)
 class HouseDAOImplTest {
     private static final HouseDAO HOUSE_DAO = new HouseDAOImpl();
     private static final List<HouseDTO> houseDTOS = new ArrayList<>();

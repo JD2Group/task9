@@ -1,16 +1,21 @@
 package org.example.lesson9.utils.wrappers;
 
-import org.example.lesson9.dao.impl.MockUtils;
+import org.example.lesson9.utils_src.MockUtils;
 import org.example.lesson9.dto.DoorDTO;
+import org.junit.jupiter.api.ClassOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 
 import java.lang.reflect.Field;
 
-import static org.example.lesson9.dao.impl.MockConstants.DOORS_SIZE;
-import static org.example.lesson9.dao.impl.MockConstants.DOORS_TYPE;
+import static org.example.lesson9.utils_src.MockConstants.DOORS_SIZE;
+import static org.example.lesson9.utils_src.MockConstants.DOORS_TYPE;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@TestClassOrder(ClassOrderer.OrderAnnotation.class)
+@Order(3)
 class ThrowingFunctionWrapperTest {
 
     @Test
