@@ -47,6 +47,8 @@ public class DemoAppRunner<T extends Serializable> {
                 System.out.println("\nList after save: ");
                 dtoList.forEach(System.out::println);
             }
+            dao.update(dtoList.get(0));
+            dao.update(dtoList.get(0));
 
             int randomObject = RANDOM.nextInt(dtoList.size());
             Object id = ReflectionManager.getId(dtoList.get(randomObject));
@@ -66,12 +68,7 @@ public class DemoAppRunner<T extends Serializable> {
 
             if (method.getParameterCount() != 0) {
                 var result = method.invoke(dao, methodParameters);
-                System.out.println("Unique method: " + method.getName() + "(" + Arrays.toString(methodParameters) + ")");
-                if (result != null) {
-                    System.out.println(result);
-                } else {
-                    System.out.println("Sorry, nothing found...\n");
-                }
+                System.out.println("Unique method: " + method.getName() + "(" + Arrays.toString(methodParameters) + ")\n" + result);
                 GsonManager.writeDTOList(outFilePath, result);
             }
         } catch (InvocationTargetException | IOException | IllegalAccessException fileNotFoundException) {
