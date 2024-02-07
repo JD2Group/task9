@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -48,12 +49,15 @@ class DoorDAOImplTest {
 
     @Test
     public void getBySizeTest() {
-        doorDTOS.forEach(d -> DOOR_DAO.save(d, DoorDTO.class));
+        doorDTOS.stream()
+                .limit(3)
+                .peek(d -> d.setSize(3500D))
+                .forEach(d -> DOOR_DAO.save(d, DoorDTO.class));
 
         List<DoorDTO> doorDTOList = DOOR_DAO.getBySize(FROM_SIZE, TO_SIZE);
         int expected = 3;
         assertNotNull(doorDTOList);
-        assertTrue(doorDTOList.size() >= expected, "Expected: " + expected + ", actual: " + doorDTOList.size());
+        assertEquals(expected, doorDTOList.size(), "Expected: " + expected + ", actual: " + doorDTOList.size());
 
         List<DoorDTO> emptyList = DOOR_DAO.getBySize(NULL_SIZE, NULL_SIZE);
         assertTrue(emptyList.isEmpty());
