@@ -3,7 +3,7 @@ package org.example.lesson9.utils.wrappers;
 
 import java.util.function.Function;
 
-public class ThrowingFunctionWrapper {
+public final class ThrowingFunctionWrapper {
     private ThrowingFunctionWrapper() {
     }
 

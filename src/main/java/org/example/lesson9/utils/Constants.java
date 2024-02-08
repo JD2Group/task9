@@ -2,7 +2,7 @@ package org.example.lesson9.utils;
 
 import java.util.Random;
 
-public class Constants {
+public final class Constants {
 
     //dao.DAOImpl
     public static final String OBJECT_IS_NULL = "Object should not be null";
