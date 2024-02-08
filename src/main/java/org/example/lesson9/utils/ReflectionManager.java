@@ -5,7 +5,7 @@ import org.example.lesson9.utils.wrappers.ThrowingFunctionWrapper;
 import javax.persistence.Id;
 import java.util.Arrays;
 
-public class ReflectionManager {
+public final class ReflectionManager {
     private ReflectionManager() {
     }
 
