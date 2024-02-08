@@ -20,7 +20,7 @@ public class MockConstants {
     public static final List<String> HOUSES_COLOR = List.of("белый", "черный", "зеленый", "черно-белый", "красный");
     public static final List<Integer> HOUSES_ROOM = List.of(5, 3, 4, 7, 3);
     public static final String NULL_COLOR = "";
-
+    public static final String COLOR_TEST = "ColorTest";
     private MockConstants() {
     }
 }

@@ -5,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-public final class HibernateUtil {
+public class HibernateUtil {
     private static final EntityManagerFactory FACTORY =
             Persistence.createEntityManagerFactory("lesson9");
 

@@ -14,7 +14,8 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class GsonManager {
+public class GsonManager {
+
     private static Gson gson;
 
     static {
