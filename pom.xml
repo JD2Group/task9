@@ -79,6 +79,8 @@
                 </configuration>
                 <executions>
                     <execution>
+                        <id>checkstyle_id</id>
+                        <phase>compile</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -100,7 +102,6 @@
                         <exclude>org/example/lesson9/dto/*DTO*.*</exclude>
                         <exclude>org/example/lesson9/DemoAppRunner.class</exclude>
                         <exclude>org/example/lesson9/utils/Constants.class</exclude>
-                        <exclude>org/example/lesson9/Test.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

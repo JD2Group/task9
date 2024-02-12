@@ -2,8 +2,6 @@ package org.example.lesson9.utils;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import org.example.lesson9.utils.jacoco.Generated;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,7 +47,6 @@ public final class GsonManager {
         return Files.readString(Paths.get(filePath));
     }
 
-    @Generated
     private static class TimeDeserializer implements JsonDeserializer<Time> {
 
         @Override

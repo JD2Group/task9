@@ -3,11 +3,11 @@ package org.example.lesson9.dao;
 import java.io.Serializable;
 
 public interface DAO<T extends Serializable> {
-    T save(T object, Class<T> clazz);
+    T save(T object);
 
     T update(T object);
 
-    T get(int id, Class<T> clazz);
+    T get(int id);
 
-    void delete(int id, Class<T> clazz);
+    void delete(int id);
 }

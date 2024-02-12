@@ -9,7 +9,7 @@ import org.junit.jupiter.api.TestClassOrder;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
-@Order(5)
+@Order(4)
 class HibernateUtilTest {
 
     @Test

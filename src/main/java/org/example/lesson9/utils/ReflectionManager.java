@@ -13,8 +13,7 @@ public final class ReflectionManager {
         return Arrays.stream(object.getClass().getDeclaredFields())
                 .filter(f -> f.isAnnotationPresent(Id.class))
                 .peek(f -> f.setAccessible(true))
-                .map(f -> ThrowingFunctionWrapper.apply(q -> f.get(object), IllegalAccessException.class)
-                        .apply(object))
+                .map(f -> ThrowingFunctionWrapper.apply(q -> f.get(object)).apply(object))
                 .findFirst()
                 .orElse(null);
     }

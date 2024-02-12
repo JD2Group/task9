@@ -2,77 +2,53 @@ package org.example.lesson9.dao.impl;
 
 import org.example.lesson9.dao.DAO;
 import org.example.lesson9.utils.HibernateUtil;
-import org.example.lesson9.utils.ReflectionManager;
-import org.example.lesson9.utils.jacoco.Generated;
-
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 
-import static org.example.lesson9.utils.Constants.OBJECT_IS_NULL;
+public abstract class DAOImpl<T extends Serializable> implements DAO<T> {
 
-public class DAOImpl<T extends Serializable> implements DAO<T> {
-    private EntityManager manager;
 
     @Override
-    public T save(T object, Class<T> clazz) {
-        if (object != null) {
-            startTransaction();
-            if (manager.find(clazz, ReflectionManager.getId(object)) == null) {
-                manager.persist(object);
-            } else {
-                manager.merge(object);
-            }
-            commit();
-        } else {
-            throw new IllegalArgumentException(OBJECT_IS_NULL);
-        }
+    public T save(T object) {
+        EntityManager manager = HibernateUtil.getEntityManager();
+        manager.getTransaction().begin();
+        manager.persist(object);
+        manager.getTransaction().commit();
+        manager.close();
         return object;
     }
 
     @Override
     public T update(T object) {
-        if (object != null) {
-            startTransaction();
-            manager.merge(object);
-            commit();
-        } else {
-            throw new IllegalArgumentException(OBJECT_IS_NULL);
-        }
+        EntityManager manager = HibernateUtil.getEntityManager();
+        manager.getTransaction().begin();
+        manager.merge(object);
+        manager.getTransaction().commit();
+        manager.close();
         return object;
     }
 
     @Override
-    public T get(int id, Class<T> clazz) {
-        startTransaction();
-        T result = manager.find(clazz, id);
-        commit();
+    public T get(int id) {
+        EntityManager manager = HibernateUtil.getEntityManager();
+        manager.getTransaction().begin();
+        T result = manager.find(getDTOClass(), id);
+        manager.getTransaction().commit();
+        manager.close();
         return result;
     }
 
     @Override
-    public void delete(int id, Class<T> clazz) {
-        startTransaction();
-        T objectForDelete = manager.find(clazz, id);
+    public void delete(int id) {
+        EntityManager manager = HibernateUtil.getEntityManager();
+        manager.getTransaction().begin();
+        T objectForDelete = manager.find(getDTOClass(), id);
         if (objectForDelete != null) {
             manager.remove(objectForDelete);
         }
-        commit();
+        manager.getTransaction().commit();
+        manager.close();
     }
 
-    protected void startTransaction() {
-        manager = HibernateUtil.getEntityManager();
-        manager.getTransaction().begin();
-    }
-
-    @Generated
-    protected void commit() {
-        if (manager != null && manager.getTransaction().isActive()) {
-            manager.getTransaction().commit();
-            manager.close();
-        }
-    }
-
-    protected EntityManager getManager() {
-        return manager;
-    }
+    protected abstract Class<T> getDTOClass();
 }

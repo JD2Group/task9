@@ -22,7 +22,7 @@ import static org.example.lesson9.utils_src.MockConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
-@Order(4)
+@Order(3)
 class GsonManagerTest {
     private static final List<DoorDTO> doorDTOS = new ArrayList<>();
 

@@ -4,10 +4,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import static org.example.lesson9.utils.Constants.PERSISTENCE_UNIT_NAME;
+
 
 public final class HibernateUtil {
     private static final EntityManagerFactory FACTORY =
-            Persistence.createEntityManagerFactory("lesson9");
+            Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
     private HibernateUtil() {
     }

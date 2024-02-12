@@ -28,10 +28,10 @@ public class DemoAppRunner<T extends Serializable> {
     public static void main(String[] args) throws NoSuchMethodException {
         DemoAppRunner<DoorDTO> doorDemo = new DemoAppRunner<>();
         DemoAppRunner<HouseDTO> houseDemo = new DemoAppRunner<>();
-        Method doorsUniqueMethod = DoorDAO.class.getDeclaredMethod("getBySize", double.class, double.class);
-        Method housesUniqueMethod = HouseDAO.class.getDeclaredMethod("getByColor", String.class);
-        doorDemo.runner(DOORS_IN_FILE_PATH, DOORS_OUT_FILE_PATH, DoorDTO.class, DOORS_DAO, doorsUniqueMethod, 900D, 1300D);
-        houseDemo.runner(HOUSES_IN_FILE_PATH, HOUSES_OUT_FILE_PATH, HouseDTO.class, HOUSE_DAO, housesUniqueMethod, "черный");
+        Method doorsUniqueMethod = DoorDAO.class.getDeclaredMethod(DOOR_METHOD_NAME, double.class, double.class);
+        Method housesUniqueMethod = HouseDAO.class.getDeclaredMethod(HOUSE_METHOD_NAME, String.class);
+        doorDemo.runner(DOORS_IN_FILE_PATH, DOORS_OUT_FILE_PATH, DoorDTO.class, DOORS_DAO, doorsUniqueMethod, DOOR_FROM_SIZE, DOOR_TO_SIZE);
+        houseDemo.runner(HOUSES_IN_FILE_PATH, HOUSES_OUT_FILE_PATH, HouseDTO.class, HOUSE_DAO, housesUniqueMethod, HOUSE_COLOR);
         HibernateUtil.close();
     }
 
@@ -41,7 +41,7 @@ public class DemoAppRunner<T extends Serializable> {
             System.out.println("\nList before save:");
             dtoList.forEach(System.out::println);
 
-            dtoList.forEach(dto -> dao.save(dto, clazz));
+            dtoList.forEach(dao::save);
 
             if (!dtoList.isEmpty()) {
                 System.out.println("\nList after save: ");
@@ -54,12 +54,12 @@ public class DemoAppRunner<T extends Serializable> {
             Object id = ReflectionManager.getId(dtoList.get(randomObject));
             int randomObjectId = id != null ? (int) id : 1;
 
-            T objectForUpdate = dao.get(randomObjectId, clazz);
+            T objectForUpdate = dao.get(randomObjectId);
 
             System.out.println("Get object by id " + randomObjectId + ": " + objectForUpdate);
             System.out.println("Updated object: " + dao.update(objectForUpdate));
-            dao.delete(randomObjectId, clazz);
-            T deleteResult = dao.get(randomObjectId, clazz);
+            dao.delete(randomObjectId);
+            T deleteResult = dao.get(randomObjectId);
             if (deleteResult == null) {
                 System.out.println("Object with id: " + randomObjectId + " deleted");
             } else {

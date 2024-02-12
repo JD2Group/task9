@@ -11,23 +11,24 @@ import java.lang.reflect.Field;
 
 import static org.example.lesson9.utils_src.MockConstants.DOORS_SIZE;
 import static org.example.lesson9.utils_src.MockConstants.DOORS_TYPE;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
-@Order(3)
+@Order(2)
 class ThrowingFunctionWrapperTest {
 
     @Test
     public void applyTest() throws NoSuchFieldException {
         DoorDTO doorDTO = MockUtils.buildDoor(DOORS_SIZE.get(0), DOORS_TYPE.get(0));
         Field field = DoorDTO.class.getDeclaredField("id");
-        Object actual = ThrowingFunctionWrapper.apply(f -> field.get(doorDTO), IllegalAccessException.class).apply(doorDTO);
+        field.setAccessible(true);
+        Object actual = ThrowingFunctionWrapper.apply(f -> field.get(doorDTO)).apply(doorDTO);
 
-        assertNull(actual);
+        assertNotNull(actual);
 
+        field.setAccessible(false);
         assertThrows(RuntimeException.class,
-                () -> ThrowingFunctionWrapper.apply(f -> field.get(null), IllegalAccessException.class).apply(doorDTO));
+                () -> ThrowingFunctionWrapper.apply(f -> field.get(null)).apply(doorDTO));
     }
 
 }

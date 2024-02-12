@@ -15,9 +15,6 @@ import java.io.Serializable;
 @Builder
 @Entity
 @Table(name = "doors")
-@NamedNativeQuery(name = "getBySize",
-        query = "select * from doors where size between :fromSize and :toSize",
-        resultClass = DoorDTO.class)
 public class DoorDTO implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

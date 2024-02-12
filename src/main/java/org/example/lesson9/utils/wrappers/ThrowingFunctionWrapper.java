@@ -7,18 +7,13 @@ public final class ThrowingFunctionWrapper {
     private ThrowingFunctionWrapper() {
     }
 
-    public static <T, R, E extends Exception> Function<T, R> apply(ThrowingFunction<T, R, E> function, Class<E> exceptionClass) {
+    public static <T, R, E extends Exception> Function<T, R> apply(ThrowingFunction<T, R, E> function) {
         return object -> {
-            R result = null;
+            R result;
             try {
                 result = function.apply(object);
             } catch (Exception e) {
-                try {
-                    E exception = exceptionClass.cast(e);
-                    exception.printStackTrace();
-                } catch (ClassCastException castException) {
-                    throw new RuntimeException();
-                }
+                throw new RuntimeException(e.getCause());
             }
             return result;
         };
